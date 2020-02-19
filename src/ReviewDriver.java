@@ -3,5 +3,8 @@ public class ReviewDriver {
         System.out.println( Review.sentimentVal("actress"));
         System.out.println( Review.sentimentVal("enjoy"));
         System.out.println( Review.sentimentVal("nice"));
+        System.out.println(Review.totalSentiment("SimpleReview.txt"));
     }
+
+
 }

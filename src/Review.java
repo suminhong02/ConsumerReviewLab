@@ -162,6 +162,15 @@ public class Review {
   }
 
   public static double totalSentiment(String fileName){
+    String ofFile = textToString(fileName);
+    double sentimentValue = 0.0;
+    int counter = 0;
+    int blank = 0;
+    while(counter < ofFile.length()){
+      blank = ofFile.indexOf(" ", blank+1);
+      sentimentValue += sentimentVal(ofFile.substring(counter, blank));
+    }
 
+    return sentimentValue;
   }
 }
