@@ -167,8 +167,12 @@ public class Review {
     int counter = 0;
     int blank = 0;
     while(counter < ofFile.length()){
-      blank = ofFile.indexOf(" ", blank+1);
-      sentimentValue += sentimentVal(ofFile.substring(counter, blank));
+      int k = 0;
+        blank = ofFile.indexOf(" ", blank+1);
+      String word = ofFile.substring(counter, blank);
+      sentimentValue += sentimentVal(word);
+      //sentimentValue += sentimentVal(ofFile.substring(counter, blank));
+      counter =+ blank+1;
     }
 
     return sentimentValue;
