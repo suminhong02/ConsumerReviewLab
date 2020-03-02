@@ -166,15 +166,35 @@ public class Review {
     double sentimentValue = 0.0;
     int counter = 0;
     int blank = 0;
-    while(counter < ofFile.length()){
-      int k = 0;
+    int length = ofFile.length();
+    while(counter < ofFile.length() && blank<ofFile.length()){
         blank = ofFile.indexOf(" ", blank+1);
-      String word = ofFile.substring(counter, blank);
-      sentimentValue += sentimentVal(word);
-      //sentimentValue += sentimentVal(ofFile.substring(counter, blank));
+      String word = removePunctuation(ofFile.substring(counter, blank));
       counter =+ blank+1;
+      sentimentValue += sentimentVal(word);
+
     }
 
     return sentimentValue;
+  }
+
+  public static int starRating(String fileName){
+    double totalSentiment = totalSentiment(fileName);
+    if(totalSentiment >= 30){
+      return 5;
+    }
+    else if(totalSentiment < 30){
+      return 4;
+    }
+    else if(totalSentiment < 20){
+      return 3;
+    }
+    else if(totalSentiment < 10){
+      return 2;
+    }
+    else if(totalSentiment < 0){
+      return 1;
+    }
+    else return 0;
   }
 }
