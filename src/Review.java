@@ -167,13 +167,22 @@ public class Review {
     int counter = 0;
     int blank = 0;
     int length = ofFile.length();
-    while(counter < ofFile.length() && blank<ofFile.length()){
-        blank = ofFile.indexOf(" ", blank+1);
-      String word = removePunctuation(ofFile.substring(counter, blank));
-      counter =+ blank+1;
-      sentimentValue += sentimentVal(word);
+//    int firstBlank = ofFile.indexOf(" ");
+//    String firstWord = removePunctuation(ofFile.substring(counter,firstBlank));
+//    sentimentValue +=sentimentVal(firstWord);
 
+    while(counter < ofFile.length() && blank<ofFile.length()){
+      blank = ofFile.indexOf(" ", blank + 1);
+      if(blank <0){
+        break;
+      }
+      String word = removePunctuation(ofFile.substring(counter, blank));
+      counter = +blank + 1;
+      sentimentValue += sentimentVal(word);
     }
+
+    String word = removePunctuation(ofFile.substring(blank, ofFile.length()));
+    sentimentValue +=sentimentVal(word);
 
     return sentimentValue;
   }
