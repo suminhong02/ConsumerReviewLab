@@ -171,19 +171,17 @@ public class Review {
 //    String firstWord = removePunctuation(ofFile.substring(counter,firstBlank));
 //    sentimentValue +=sentimentVal(firstWord);
 
-    while(counter < ofFile.length() && blank<ofFile.length()){
-      blank = ofFile.indexOf(" ", blank + 1);
+    while(blank!=-1){
+      blank = ofFile.indexOf(" ", counter);
       if(blank <0){
         break;
       }
       String word = removePunctuation(ofFile.substring(counter, blank));
-      counter = +blank + 1;
+      counter = blank + 1;
       sentimentValue += sentimentVal(word);
     }
-
-    String word = removePunctuation(ofFile.substring(blank, ofFile.length()));
-    sentimentValue +=sentimentVal(word);
-
+    String word = removePunctuation(ofFile.substring(counter, ofFile.length()));
+    sentimentValue += sentimentVal(word);
     return sentimentValue;
   }
 
@@ -192,10 +190,10 @@ public class Review {
     if(totalSentiment >= 30){
       return 5;
     }
-    else if(totalSentiment < 30){
+    else if(totalSentiment > 20){
       return 4;
     }
-    else if(totalSentiment < 20){
+    else if(totalSentiment > 10){
       return 3;
     }
     else if(totalSentiment < 10){
